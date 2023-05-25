@@ -84,7 +84,7 @@ class UnimolPlusLoss(UnicoreLoss):
         dist_loss = get_dist_loss(dist_pred)
 
         total_loss = (
-            loss + dist_loss * 0.0 + self.args.pos_loss_weight * (pos_loss + center_loss)
+            loss + self.args.pos_loss_weight * (pos_loss + center_loss)
         )
         logging_output = {
             "loss": loss.data,
