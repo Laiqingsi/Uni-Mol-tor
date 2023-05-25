@@ -66,4 +66,4 @@ python -m torch.distributed.launch --nproc_per_node=$n_gpu --master_port $MASTER
       --optimizer adam --adam-betas '(0.9, 0.999)' --adam-eps 1e-8 $action_args --clip-norm $clip_norm \
       --lr $lr --end-learning-rate $end_lr --lr-scheduler polynomial_decay --power 1 \
       --warmup-updates $warmup_steps --total-num-update $total_steps --max-update $total_steps --update-freq $update_freq \
-      --label-prob $label_prob --noise-scale $noise --seed $seed $more_args 
+      --label-prob $label_prob --mid-prob $mid_prob --noise-scale $noise --seed $seed $more_args 
