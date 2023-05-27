@@ -14,12 +14,14 @@
 [ -z "${clip_norm}" ] && clip_norm=5
 [ -z "${weight_decay}" ] && weight_decay=0.0
 [ -z "${pos_loss_weight}" ] && pos_loss_weight=0.2
+[ -z "${dist_loss_weight}" ] && dist_loss_weight=1.0
 [ -z "${valid_sets}" ] && valid_sets="valid"
 [ -z "${noise}" ] && noise=0.2
 [ -z "${label_prob}" ] && label_prob=0.7
 [ -z "${mid_prob}" ] && mid_prob=0.1
 [ -z "${mid_lower}" ] && mid_lower=0.4
 [ -z "${mid_upper}" ] && mid_upper=0.6
+[ -z "${num_block}" ] && num_block=2
 [ -z "${ema_decay}" ] && ema_decay=0.999
 [ -z "${arch}" ] && arch=unimol_plus_base
 
@@ -66,4 +68,5 @@ python -m torch.distributed.launch --nproc_per_node=$n_gpu --master_port $MASTER
       --optimizer adam --adam-betas '(0.9, 0.999)' --adam-eps 1e-8 $action_args --clip-norm $clip_norm \
       --lr $lr --end-learning-rate $end_lr --lr-scheduler polynomial_decay --power 1 \
       --warmup-updates $warmup_steps --total-num-update $total_steps --max-update $total_steps --update-freq $update_freq \
-      --label-prob $label_prob --mid-prob $mid_prob --pos-loss-weight $pos_loss_weight --noise-scale $noise --seed $seed $more_args 
+      --label-prob $label_prob --mid-prob $mid_prob --pos-loss-weight $pos_loss_weight --noise-scale $noise --seed $seed $more_args \
+      --num-block $num_block --dist-loss-weight $dist_loss_weight 

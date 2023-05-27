@@ -182,6 +182,12 @@ class UnimolPlusModel(BaseUnicoreModel):
             type=float,
             help="loss weight for pos",
         )
+        parser.add_argument(
+            "--dist-loss-weight",
+            default=1.0,
+            type=float,
+            help="loss weight for dist",
+        )
 
     def __init__(self, args):
         super().__init__()
